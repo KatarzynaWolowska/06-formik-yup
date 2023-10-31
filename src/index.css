@@ -26,6 +26,14 @@ body {
     padding: 2rem;
 }
 
+.error {
+    color: #f44;
+}
+
+.MuiFormControlLabel-label {
+    color: #c2c2c2;
+}
+
 * {
     box-sizing: border-box;
 }
