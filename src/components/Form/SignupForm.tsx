@@ -1,13 +1,9 @@
-import { TextField, LinearProgress, Stack, Box, FormControlLabel, Checkbox } from '@mui/material'
-import { Field, Form, Formik, ErrorMessage } from 'formik'
-import * as yup from 'yup'
-import Button from './CustomButton'
-
-const SignupSchema = yup.object({
-    email: yup.string().email('Enter a valid email').required('Email is required'),
-    password: yup.string().min(8, 'Password should be of minimum 8 characters length').required('Password is required'),
-    consent: yup.boolean().oneOf([true], 'Required.')
-})
+import { LinearProgress, Stack } from '@mui/material'
+import { Form, Formik } from 'formik'
+import SignupSchema from '../../schema/SignUpSchema'
+import Button from '../CustomInputs/CustomButton'
+import CustomCheckbox from '../CustomInputs/CustomCheckbox'
+import CustomTextField from '../CustomInputs/CustomTextField'
 
 const SignupForm = () => {
     return (
@@ -27,28 +23,14 @@ const SignupForm = () => {
             {({ submitForm, isSubmitting, errors, touched }) => (
                 <Form>
                     <Stack spacing={2} maxWidth='600px' margin='auto'>
-                        <Box>
-                            <Field as={TextField} name='email' type='email' label='Email' fullWidth />
-                            <ErrorMessage name='email' component='div' className='error' />
-                        </Box>
-                        <Box>
-                            <Field as={TextField} name='password' type='password' label='Password' fullWidth />
-                            <ErrorMessage name='password' component='div' className='error' />
-                        </Box>
-                        <Box>
-                            <Field
-                                type='checkbox'
-                                name='consent'
-                                as={FormControlLabel}
-                                control={
-                                    <Checkbox
-                                        style={{ color: errors.consent && touched.consent ? '#f44' : undefined }}
-                                    />
-                                }
-                                label='Check the box indicating that you agree with the terms and conditions'
-                            />
-                            <ErrorMessage name='consent' component='div' className='error' />
-                        </Box>
+                        <CustomTextField name='email' type='email' label='E-mail' />
+                        <CustomTextField name='password' type='password' label='Password' />
+                        <CustomCheckbox
+                            name='consent'
+                            label='Check the box indicating that you agree with the terms and conditions'
+                            form={{ errors: errors, touched: touched }}
+                        />
+
                         {isSubmitting && <LinearProgress />}
                         <Button
                             variant='contained'
