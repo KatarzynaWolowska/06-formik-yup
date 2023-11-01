@@ -1,6 +1,6 @@
 import { LinearProgress, Stack } from '@mui/material'
 import { Form, Formik } from 'formik'
-import SignupSchema from '../../schema/SignUpSchema'
+import SignupSchema from '../../schema/SignupSchema'
 import Button from '../CustomInputs/CustomButton'
 import CustomCheckbox from '../CustomInputs/CustomCheckbox'
 import CustomTextField from '../CustomInputs/CustomTextField'
