@@ -3,9 +3,10 @@ import { ErrorMessage, Field } from 'formik'
 
 interface CustomTextFieldProps {
     name: string
-    type?: 'text' | 'password' | 'email'
+    type?: 'text' | 'password' | 'email' | 'number' | 'url'
     label: string
     onChange?: (e) => void
+    inputProps?: any
 }
 
 const CustomTextField = ({ ...props }: CustomTextFieldProps) => (

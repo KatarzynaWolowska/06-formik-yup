@@ -14,16 +14,17 @@
 }
 body {
     margin: 0;
-    display: flex;
-    place-items: center;
+    /* display: flex;
+    place-items: center;*/
     min-width: 320px;
     min-height: 100vh;
+    background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
 }
 #root {
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 3rem;
 }
 
 .error {
