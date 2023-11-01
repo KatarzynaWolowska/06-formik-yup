@@ -10,6 +10,8 @@ const FakeRegister = () => {
         <Formik
             initialValues={{
                 email: '',
+                firstname: '',
+                surname: '',
                 password: '',
                 confirmPassword: '',
                 consent: false
@@ -25,6 +27,8 @@ const FakeRegister = () => {
                 <Form>
                     <Stack spacing={2} maxWidth='600px' margin='auto'>
                         <CustomTextField name='email' type='email' label='E-mail' />
+                        <CustomTextField name='firstname' type='text' label='First name' />
+                        <CustomTextField name='surname' type='text' label='Surname' />
                         <CustomTextField name='password' type='password' label='Password' />
                         <CustomTextField name='confirmPassword' type='password' label='Confirm password' />
                         <CustomCheckbox
