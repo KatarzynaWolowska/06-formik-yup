@@ -8,6 +8,8 @@ interface CustomCheckboxProps {
         errors?: any
         touched?: any
     }
+    checked?: boolean
+    onClick?: (e) => void
 }
 
 const CustomCheckbox = ({ name, label, form: { touched, errors }, ...props }: CustomCheckboxProps) => (

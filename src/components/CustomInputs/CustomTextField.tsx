@@ -5,12 +5,13 @@ interface CustomTextFieldProps {
     name: string
     type?: 'text' | 'password' | 'email'
     label: string
+    onChange?: (e) => void
 }
 
-const CustomTextField = ({ name, type = 'text', label }: CustomTextFieldProps) => (
+const CustomTextField = ({ ...props }: CustomTextFieldProps) => (
     <Box>
-        <Field as={TextField} name={name} type={type} label={label} fullWidth />
-        <ErrorMessage name={name} component='div' className='error' />
+        <Field as={TextField} {...props} fullWidth />
+        <ErrorMessage name={props.name} component='div' className='error' />
     </Box>
 )
 
