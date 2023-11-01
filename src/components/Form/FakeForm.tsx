@@ -40,10 +40,9 @@ const FakeForm = () => {
                         <CustomTextField name='postCode' type='text' label='Post code (__-___)' />
                         <CustomTextField name='phone' type='text' label='Phone (+___________)' />
                         <CustomTextField name='pesel' type='text' label='PESEL' />
-
                         <CustomCheckbox
                             name='volunteer'
-                            label='volunteer'
+                            label='I want to become a volunteer'
                             form={{ errors: errors, touched: touched }}
                         />
 

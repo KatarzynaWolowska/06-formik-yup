@@ -22,6 +22,8 @@ const FakeFormSchema = yup.object({
         .string()
         .matches(/^[0-9]{11}$/, 'PESEL must be exactly 11 digits')
         .test('pesel', 'Invalid PESEL', value => {
+            if (!value) return true
+
             const month = Number(value.substring(2, 4))
             const day = Number(value.substring(4, 6))
             const controlDigit = Number(value.substring(10, 11))
@@ -51,6 +53,8 @@ const FakeFormSchema = yup.object({
 
             return true
         })
+        .optional()
+        .nullable()
 })
 
 export default FakeFormSchema
