@@ -15,7 +15,7 @@ const FakeFormSchema = yup.object({
         .required('This field is required'),
     phone: yup
         .string()
-        .length(12, 'Valid format is +___________')
+        .length(12, 'Must be exactly 11 digits. Add before +')
         .matches(/^\+\d{11}$/, 'Valid format is +___________'),
     volunteer: yup.boolean().required('This field is required'),
     pesel: yup
