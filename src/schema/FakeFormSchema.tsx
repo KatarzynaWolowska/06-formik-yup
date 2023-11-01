@@ -17,8 +17,40 @@ const FakeFormSchema = yup.object({
         .string()
         .length(12, 'Valid format is +___________')
         .matches(/^\+\d{11}$/, 'Valid format is +___________'),
-    pesel: yup.string().matches(/^\d{11}$/, 'This field should be of 11 characters length'),
-    volunteer: yup.boolean().required('This field is required')
+    volunteer: yup.boolean().required('This field is required'),
+    pesel: yup
+        .string()
+        .matches(/^[0-9]{11}$/, 'PESEL must be exactly 11 digits')
+        .test('pesel', 'Invalid PESEL', value => {
+            const month = Number(value.substring(2, 4))
+            const day = Number(value.substring(4, 6))
+            const controlDigit = Number(value.substring(10, 11))
+
+            if ((month > 12 && month < 21) || month < 1) {
+                return false
+            }
+
+            if (day < 1 || day > 31) {
+                return false
+            }
+
+            const weights = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3]
+            const digits = value.split('')
+
+            let sum = 0
+
+            weights.map((weight, i) => {
+                sum += (Number(digits[i]) * weight) % 10
+            })
+
+            const calculatedControlDigit = (10 - (sum % 10)) % 10
+
+            if (calculatedControlDigit !== controlDigit) {
+                return false
+            }
+
+            return true
+        })
 })
 
 export default FakeFormSchema
