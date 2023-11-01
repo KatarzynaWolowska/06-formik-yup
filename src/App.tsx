@@ -1,7 +1,8 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-// import FakeRegister from './components/Form/FakeRegister'
-// import FakeLogin from './components/Form/FakeLogin'
+import { Divider } from '@mui/material'
+import FakeRegister from './components/Form/FakeRegister'
+import FakeLogin from './components/Form/FakeLogin'
 import FakeForm from './components/Form/FakeForm'
 
 const darkTheme = createTheme({
@@ -17,9 +18,12 @@ function App() {
     return (
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
+
             <FakeForm />
-            {/* <FakeLogin />
-            <FakeRegister /> */}
+            <Divider sx={{ my: 10 }} />
+            <FakeLogin />
+            <Divider sx={{ my: 10 }} />
+            <FakeRegister />
         </ThemeProvider>
     )
 }
