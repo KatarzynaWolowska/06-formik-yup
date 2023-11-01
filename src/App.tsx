@@ -1,6 +1,6 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import SignupForm from './components/Form/SignupForm'
+import FakeRegister from './components/Form/FakeRegister'
 
 const darkTheme = createTheme({
     palette: {
@@ -15,7 +15,7 @@ function App() {
     return (
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
-            <SignupForm />
+            <FakeRegister />
         </ThemeProvider>
     )
 }

@@ -5,12 +5,13 @@ import Button from '../CustomInputs/CustomButton'
 import CustomCheckbox from '../CustomInputs/CustomCheckbox'
 import CustomTextField from '../CustomInputs/CustomTextField'
 
-const SignupForm = () => {
+const FakeRegister = () => {
     return (
         <Formik
             initialValues={{
                 email: '',
                 password: '',
+                confirmPassword: '',
                 consent: false
             }}
             validationSchema={SignupSchema}
@@ -25,6 +26,7 @@ const SignupForm = () => {
                     <Stack spacing={2} maxWidth='600px' margin='auto'>
                         <CustomTextField name='email' type='email' label='E-mail' />
                         <CustomTextField name='password' type='password' label='Password' />
+                        <CustomTextField name='confirmPassword' type='password' label='Confirm password' />
                         <CustomCheckbox
                             name='consent'
                             label='Check the box indicating that you agree with the terms and conditions'
@@ -47,4 +49,4 @@ const SignupForm = () => {
     )
 }
 
-export default SignupForm
+export default FakeRegister
