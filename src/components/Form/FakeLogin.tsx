@@ -41,8 +41,8 @@ const FakeLogin = () => {
             {({ submitForm, isSubmitting, errors, touched }) => (
                 <Form>
                     <Stack spacing={2} maxWidth='600px' margin='auto'>
-                        <CustomTextField name='username' type='text' label='Username' />
-                        <CustomTextField name='password' type='password' label='Password' />
+                        <CustomTextField name='username' type='text' label='Username' required />
+                        <CustomTextField name='password' type='password' label='Password' required />
                         <CustomCheckbox
                             name='rememberMe'
                             label='Remember me'

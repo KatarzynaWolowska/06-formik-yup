@@ -28,22 +28,24 @@ const FakeForm = () => {
             {({ submitForm, isSubmitting, errors, touched }) => (
                 <Form>
                     <Stack spacing={2} maxWidth='600px' margin='auto'>
-                        <CustomTextField name='firstname' type='text' label='First name' />
+                        <CustomTextField name='firstname' type='text' label='First name' required />
                         <CustomTextField
                             name='age'
                             type='number'
                             label='Age'
                             inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                            required
                         />
-                        <CustomTextField name='city' type='text' label='City' />
+                        <CustomTextField name='city' type='text' label='City' required />
                         <CustomTextField name='photoURL' type='url' label='URL to your photo' />
-                        <CustomTextField name='postCode' type='text' label='Post code (__-___)' />
+                        <CustomTextField name='postCode' type='text' label='Post code (__-___)' required />
                         <CustomTextField name='phone' type='text' label='Phone (+___________)' />
                         <CustomTextField name='pesel' type='text' label='PESEL' />
                         <CustomCheckbox
                             name='volunteer'
                             label='I want to become a volunteer'
                             form={{ errors: errors, touched: touched }}
+                            required
                         />
 
                         {isSubmitting && <LinearProgress />}
@@ -53,7 +55,7 @@ const FakeForm = () => {
                             disabled={isSubmitting}
                             onClick={submitForm}
                             style={{ margin: '1rem auto' }}>
-                            Sign up
+                            Submit
                         </Button>
                     </Stack>
                 </Form>

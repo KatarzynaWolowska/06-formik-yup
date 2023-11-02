@@ -7,6 +7,7 @@ interface CustomTextFieldProps {
     label: string
     onChange?: (e) => void
     inputProps?: any
+    required?: boolean
 }
 
 const CustomTextField = ({ ...props }: CustomTextFieldProps) => (

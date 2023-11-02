@@ -9,6 +9,7 @@ interface CustomCheckboxProps {
         touched?: any
     }
     checked?: boolean
+    required?: boolean
     onClick?: (e) => void
 }
 
@@ -22,7 +23,7 @@ const CustomCheckbox = ({ name, label, form: { touched, errors }, ...props }: Cu
             label={label}
             {...props}
         />
-        <ErrorMessage name='consent' component='div' className='error' />
+        <ErrorMessage name={name} component='div' className='error' />
     </Box>
 )
 

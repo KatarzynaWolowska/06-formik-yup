@@ -26,15 +26,16 @@ const FakeRegister = () => {
             {({ submitForm, isSubmitting, errors, touched }) => (
                 <Form>
                     <Stack spacing={2} maxWidth='600px' margin='auto'>
-                        <CustomTextField name='email' type='email' label='E-mail' />
-                        <CustomTextField name='firstname' type='text' label='First name' />
-                        <CustomTextField name='surname' type='text' label='Surname' />
-                        <CustomTextField name='password' type='password' label='Password' />
-                        <CustomTextField name='confirmPassword' type='password' label='Confirm password' />
+                        <CustomTextField name='email' type='email' label='E-mail' required />
+                        <CustomTextField name='firstname' type='text' label='First name' required />
+                        <CustomTextField name='surname' type='text' label='Surname' required />
+                        <CustomTextField name='password' type='password' label='Password' required />
+                        <CustomTextField name='confirmPassword' type='password' label='Confirm password' required />
                         <CustomCheckbox
                             name='consent'
                             label='Check the box indicating that you agree with the terms and conditions'
                             form={{ errors: errors, touched: touched }}
+                            required
                         />
 
                         {isSubmitting && <LinearProgress />}
