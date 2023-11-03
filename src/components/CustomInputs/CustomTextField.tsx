@@ -6,7 +6,7 @@ interface CustomTextFieldProps {
     type?: 'text' | 'password' | 'email' | 'number' | 'url'
     label: string
     onChange?: (e) => void
-    inputProps?: any
+    inputProps?: unknown
     required?: boolean
 }
 

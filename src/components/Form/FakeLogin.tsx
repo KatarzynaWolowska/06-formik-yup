@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { LinearProgress, Stack } from '@mui/material'
 import { Form, Formik } from 'formik'
-import LoginSchema from '../../schema/LoginSchema'
+import LoginSchema from './schema/LoginSchema'
 import Button from '../CustomInputs/CustomButton'
 import CustomCheckbox from '../CustomInputs/CustomCheckbox'
 import CustomTextField from '../CustomInputs/CustomTextField'
@@ -9,13 +9,15 @@ import CustomTextField from '../CustomInputs/CustomTextField'
 const FakeLogin = () => {
     const [rememberMe, setRememberMe] = useState(false)
 
+    const initialValues = {
+        username: '',
+        password: '',
+        rememberMe: false
+    }
+
     return (
         <Formik
-            initialValues={{
-                username: '',
-                password: '',
-                rememberMe: false
-            }}
+            initialValues={initialValues}
             validationSchema={LoginSchema}
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
@@ -38,8 +40,8 @@ const FakeLogin = () => {
                     alert(JSON.stringify(values, null, 2))
                 }, 500)
             }}>
-            {({ submitForm, isSubmitting, errors, touched }) => (
-                <Form>
+            {({ isSubmitting, errors, touched }) => (
+                <Form noValidate>
                     <Stack spacing={2} maxWidth='600px' margin='auto'>
                         <CustomTextField name='username' type='text' label='Username' required />
                         <CustomTextField name='password' type='password' label='Password' required />
@@ -47,16 +49,17 @@ const FakeLogin = () => {
                             name='rememberMe'
                             label='Remember me'
                             checked={rememberMe}
-                            form={{ errors: errors, touched: touched }}
+                            errors={errors['rememberMe']}
+                            touched={touched['rememberMe']}
                             onClick={() => setRememberMe(!rememberMe)}
                         />
 
                         {isSubmitting && <LinearProgress />}
                         <Button
+                            type='submit'
                             variant='contained'
                             color='primary'
                             disabled={isSubmitting}
-                            onClick={submitForm}
                             style={{ margin: '1rem auto' }}>
                             Log in
                         </Button>

@@ -1,23 +1,25 @@
 import { LinearProgress, Stack } from '@mui/material'
 import { Form, Formik } from 'formik'
-import FakeFormSchema from '../../schema/FakeFormSchema'
+import FakeFormSchema from './schema/FakeFormSchema'
 import Button from '../CustomInputs/CustomButton'
 import CustomCheckbox from '../CustomInputs/CustomCheckbox'
 import CustomTextField from '../CustomInputs/CustomTextField'
 
 const FakeForm = () => {
+    const initialValues = {
+        firstname: '',
+        age: '',
+        city: '',
+        volunteer: false,
+        photoURL: '',
+        postCode: '',
+        phone: '',
+        pesel: ''
+    }
+
     return (
         <Formik
-            initialValues={{
-                firstname: '',
-                age: '',
-                city: '',
-                volunteer: false,
-                photoURL: '',
-                postCode: '',
-                phone: '',
-                pesel: ''
-            }}
+            initialValues={initialValues}
             validationSchema={FakeFormSchema}
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
@@ -25,8 +27,8 @@ const FakeForm = () => {
                     alert(JSON.stringify(values, null, 2))
                 }, 500)
             }}>
-            {({ submitForm, isSubmitting, errors, touched }) => (
-                <Form>
+            {({ isSubmitting, errors, touched }) => (
+                <Form noValidate>
                     <Stack spacing={2} maxWidth='600px' margin='auto'>
                         <CustomTextField name='firstname' type='text' label='First name' required />
                         <CustomTextField
@@ -44,16 +46,17 @@ const FakeForm = () => {
                         <CustomCheckbox
                             name='volunteer'
                             label='I want to become a volunteer'
-                            form={{ errors: errors, touched: touched }}
+                            errors={errors['volunteer']}
+                            touched={touched['volunteer']}
                             required
                         />
 
                         {isSubmitting && <LinearProgress />}
                         <Button
+                            type='submit'
                             variant='contained'
                             color='primary'
                             disabled={isSubmitting}
-                            onClick={submitForm}
                             style={{ margin: '1rem auto' }}>
                             Submit
                         </Button>

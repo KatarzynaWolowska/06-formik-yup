@@ -1,21 +1,23 @@
 import { LinearProgress, Stack } from '@mui/material'
 import { Form, Formik } from 'formik'
-import SignupSchema from '../../schema/SignupSchema'
+import SignupSchema from './schema/SignupSchema'
 import Button from '../CustomInputs/CustomButton'
 import CustomCheckbox from '../CustomInputs/CustomCheckbox'
 import CustomTextField from '../CustomInputs/CustomTextField'
 
 const FakeRegister = () => {
+    const initialValues = {
+        email: '',
+        firstname: '',
+        surname: '',
+        password: '',
+        confirmPassword: '',
+        consent: false
+    }
+
     return (
         <Formik
-            initialValues={{
-                email: '',
-                firstname: '',
-                surname: '',
-                password: '',
-                confirmPassword: '',
-                consent: false
-            }}
+            initialValues={initialValues}
             validationSchema={SignupSchema}
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
@@ -23,8 +25,8 @@ const FakeRegister = () => {
                     alert(JSON.stringify(values, null, 2))
                 }, 500)
             }}>
-            {({ submitForm, isSubmitting, errors, touched }) => (
-                <Form>
+            {({ isSubmitting, errors, touched }) => (
+                <Form noValidate>
                     <Stack spacing={2} maxWidth='600px' margin='auto'>
                         <CustomTextField name='email' type='email' label='E-mail' required />
                         <CustomTextField name='firstname' type='text' label='First name' required />
@@ -34,16 +36,17 @@ const FakeRegister = () => {
                         <CustomCheckbox
                             name='consent'
                             label='Check the box indicating that you agree with the terms and conditions'
-                            form={{ errors: errors, touched: touched }}
+                            errors={errors['consent']}
+                            touched={touched['consent']}
                             required
                         />
 
                         {isSubmitting && <LinearProgress />}
                         <Button
+                            type='submit'
                             variant='contained'
                             color='primary'
                             disabled={isSubmitting}
-                            onClick={submitForm}
                             style={{ margin: '1rem auto' }}>
                             Sign up
                         </Button>

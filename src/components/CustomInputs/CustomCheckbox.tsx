@@ -4,22 +4,20 @@ import { ErrorMessage, Field } from 'formik'
 interface CustomCheckboxProps {
     name: string
     label: string
-    form: {
-        errors?: any
-        touched?: any
-    }
+    errors: string
+    touched: boolean
     checked?: boolean
     required?: boolean
     onClick?: (e) => void
 }
 
-const CustomCheckbox = ({ name, label, form: { touched, errors }, ...props }: CustomCheckboxProps) => (
+const CustomCheckbox = ({ name, label, touched, errors, ...props }: CustomCheckboxProps) => (
     <Box>
         <Field
             type='checkbox'
             name={name}
             as={FormControlLabel}
-            control={<Checkbox style={{ color: errors[name] && touched[name] ? '#f44' : undefined }} />}
+            control={<Checkbox style={{ color: errors && touched ? '#f44' : undefined }} />}
             label={label}
             {...props}
         />

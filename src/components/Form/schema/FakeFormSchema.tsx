@@ -1,4 +1,5 @@
 import * as yup from 'yup'
+import validatePesel from './validate'
 
 const FakeFormSchema = yup.object({
     firstname: yup
@@ -21,38 +22,7 @@ const FakeFormSchema = yup.object({
     pesel: yup
         .string()
         .matches(/^[0-9]{11}$/, 'PESEL must be exactly 11 digits')
-        .test('pesel', 'Invalid PESEL', value => {
-            if (!value) return true
-
-            const month = Number(value.substring(2, 4))
-            const day = Number(value.substring(4, 6))
-            const controlDigit = Number(value.substring(10, 11))
-
-            if ((month > 12 && month < 21) || month < 1) {
-                return false
-            }
-
-            if (day < 1 || day > 31) {
-                return false
-            }
-
-            const weights = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3]
-            const digits = value.split('')
-
-            let sum = 0
-
-            weights.map((weight, i) => {
-                sum += (Number(digits[i]) * weight) % 10
-            })
-
-            const calculatedControlDigit = (10 - (sum % 10)) % 10
-
-            if (calculatedControlDigit !== controlDigit) {
-                return false
-            }
-
-            return true
-        })
+        .test('pesel', 'Invalid PESEL', value => validatePesel(value))
         .optional()
         .nullable()
 })
